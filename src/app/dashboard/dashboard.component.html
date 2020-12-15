@@ -1,0 +1,15 @@
+  
+    <nav class="navbar navbar-light bg-light justify-content-between">
+        <a class="navbar-brand">Home</a>
+        <button class="btn btn-outline-primary my-2 my-sm-0" (click)="signOut()"type="submit">Sign Out</button>
+      </nav>
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">Example textarea</label>
+        <textarea class="form-control" id="comment" rows="3"  maxlength="1000" [(ngModel)]='userComment'></textarea>  
+    </div>
+    <div class="form-group">
+        <button  (click)="addComment()" class="btn btn-outline-primary my-2 mt-5 my-sm-0">
+            Add Comment
+        </button> 
+       </div>
+

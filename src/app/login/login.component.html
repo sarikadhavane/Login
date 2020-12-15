@@ -1,0 +1,34 @@
+<h2>Login</h2>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+	<div class="form-group">
+		<label for="useremail">Email id</label>
+		<input type="email" id="email" formControlName="useremail" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.useremail.errors }" />
+		<div *ngIf="submitted && f.useremail.errors" class="invalid-feedback">
+			<div id="email-required"*ngIf="f.useremail.errors.required">Email id is required</div>
+			<div id="email-pattern"*ngIf="f.useremail.errors.pattern">Please enter a valid email.</div>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="password">Password</label>
+		<input type="password" id="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors  }" />
+		<div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+			<div id="pwd-required" *ngIf="f.password.errors.required">Password is required</div>
+			<div id="pwd-min-max" *ngIf="f.password.errors.minlength || f.password.errors.maxlength">Password should be
+				6 to 12 charactors long</div>
+		</div>
+		
+	</div>
+	<div class="form-group">
+		<div *ngIf="loginForm.valid && !loginForm.dirty" class="error-message">
+			{{errorMessage}}
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<button  type="submit" class="btn btn-primary">
+            Login
+		</button>
+		
+	</div>
+</form>
