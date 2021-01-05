@@ -2,8 +2,8 @@ import { reducer, initialState } from './auth.reducers';
 import * as LoginActions from '../actions/auth.action';
 import { Store, StoreModule } from '@ngrx/store';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { User } from '../../model/user'
-import { MOCK_USER } from '../../services/user.service';
+import { User } from '../../core/model/user'
+import { MOCK_USER } from '../../core/services/user.service';
 
 describe('UserLogin Reducer', () => {
 

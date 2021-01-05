@@ -8,7 +8,7 @@ import { State, Store, StoreModule } from '@ngrx/store';
 import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppState, reducers } from '../store/reducers/auth.reducers';
-import { UserService } from '../services/user.service';
+import { UserService } from '../core/services/user.service';
 
 
 describe('LoginComponent', () => {

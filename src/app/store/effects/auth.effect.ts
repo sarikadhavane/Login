@@ -3,7 +3,7 @@
  import { Actions, Effect, ofType } from '@ngrx/effects';
  import { map, switchMap, tap,catchError } from 'rxjs/operators';
 
- import { UserService } from '../../services/user.service';
+ import { UserService } from '../../core/services/user.service';
  import {
      AuthActionTypes,
      LogIn, LogInSuccess, LogInFailure,

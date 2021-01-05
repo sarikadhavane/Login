@@ -11,8 +11,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { reducers } from './store/reducers/auth.reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './store/effects/auth.effect';
-import { UserService } from './services/user.service';
-import { AuthGuard } from './services/auth.guard';
+import { UserService } from './core/services/user.service';
+import { AuthGuard } from './core/services/auth.guard';
 
 @NgModule({
   declarations: [

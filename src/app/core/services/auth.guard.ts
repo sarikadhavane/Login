@@ -5,7 +5,7 @@ import { UserService } from './user.service';
 import { mergeMap, map, take, filter, skipWhile, first } from 'rxjs/operators';
 import { select, Store } from '@ngrx/store';
 
-import { AppState, selectAuthState } from '../store/reducers/auth.reducers';
+import { AppState, selectAuthState } from '../../store/reducers/auth.reducers';
 
 @Injectable({
   providedIn: 'root'
@@ -15,20 +15,18 @@ export class AuthGuard implements CanActivate {
   constructor(
     public auth: UserService,
     public router: Router,
-  ) {}
- 
-
-    canActivate(
-      next: ActivatedRouteSnapshot,
-      routerState: RouterStateSnapshot
-    ): Observable<boolean> {   
-     this.auth.isAuthenticated().subscribe(re=>{
-         if(!re){
-          this.router.navigate([''])
-         }
-         return re
-       })
-       return this.auth.isAuthenticated()
-    } 
+  ) { }
+  canActivate(
+    next: ActivatedRouteSnapshot,
+    routerState: RouterStateSnapshot
+  ): Observable<boolean> {
+    this.auth.isAuthenticated().subscribe(re => {
+      if (!re) {
+        this.router.navigate([''])
+      }
+      return re
+    })
+    return this.auth.isAuthenticated()
+  }
 }
 

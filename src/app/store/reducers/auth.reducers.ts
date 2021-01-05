@@ -3,8 +3,8 @@ import { AddComment, All, AuthActionTypes } from "../actions/auth.action";
 
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as auth from './auth.reducers';
-import { User } from '../../model/user';
-import { MOCK_USER } from '../../services/user.service';
+import { User } from '../../core/model/user';
+import { MOCK_USER } from '../../core/services/user.service';
 
 
 export interface State {
