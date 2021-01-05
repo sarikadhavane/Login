@@ -3,13 +3,13 @@
  import { Actions, Effect, ofType } from '@ngrx/effects';
  import { map, switchMap, tap,catchError } from 'rxjs/operators';
 
- import { UserService } from '../services/user.service';
+ import { UserService } from '../../services/user.service';
  import {
      AuthActionTypes,
      LogIn, LogInSuccess, LogInFailure,
      LogOut,
      GetStatus,
- } from './auth.action';
+ } from '../actions/auth.action';
  import { Observable, of } from 'rxjs';
 
  @Injectable()
@@ -56,14 +56,6 @@
          ofType(AuthActionTypes.ADD_COMMENT)
      );
 
-    
-     @Effect({ dispatch: false })
-     LoginRedirect = this.actions.pipe(
-       ofType(AuthActionTypes.LOGIN_REDIRECT, AuthActionTypes.LOGOUT),
-       tap(authed => {
-         this.router.navigate(['']);
-       })
-     );
 
      @Effect({ dispatch: false })
      GetStatus: Observable<any> = this.actions.pipe(

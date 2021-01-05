@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { User } from '../model/user';
 import { Store } from '@ngrx/store';
-import { AppState, selectAuthState } from '../store/auth.reducers';
-import { LogIn } from '../store/auth.action';
+import { AppState, selectAuthState } from '../store/reducers/auth.reducers';
+import { LogIn } from '../store/actions/auth.action';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 

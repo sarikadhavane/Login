@@ -8,9 +8,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { environment } from '../environments/environment';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { reducers } from './store/auth.reducers';
+import { reducers } from './store/reducers/auth.reducers';
 import { EffectsModule } from '@ngrx/effects';
-import { AuthEffects } from './store/auth.effect';
+import { AuthEffects } from './store/effects/auth.effect';
 import { UserService } from './services/user.service';
 import { AuthGuard } from './services/auth.guard';
 

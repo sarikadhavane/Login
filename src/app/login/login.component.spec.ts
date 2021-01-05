@@ -7,7 +7,7 @@ import { exception } from 'console';
 import { State, Store, StoreModule } from '@ngrx/store';
 import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AppState, reducers } from '../store/auth.reducers';
+import { AppState, reducers } from '../store/reducers/auth.reducers';
 import { UserService } from '../services/user.service';
 
 

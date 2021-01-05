@@ -5,7 +5,7 @@ import { UserService } from './user.service';
 import { mergeMap, map, take, filter, skipWhile, first } from 'rxjs/operators';
 import { select, Store } from '@ngrx/store';
 
-import { AppState, selectAuthState } from '../store/auth.reducers';
+import { AppState, selectAuthState } from '../store/reducers/auth.reducers';
 
 @Injectable({
   providedIn: 'root'

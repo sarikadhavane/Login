@@ -1,10 +1,10 @@
 
-import { AddComment, All, AuthActionTypes } from "./auth.action";
+import { AddComment, All, AuthActionTypes } from "../actions/auth.action";
 
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as auth from './auth.reducers';
-import { User } from '../model/user';
-import { MOCK_USER } from '../services/user.service';
+import { User } from '../../model/user';
+import { MOCK_USER } from '../../services/user.service';
 
 
 export interface State {

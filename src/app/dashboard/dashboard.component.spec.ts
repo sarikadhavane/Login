@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { StoreModule } from '@ngrx/store';
-import { reducers } from '../store/auth.reducers';
+import { reducers } from '../store/reducers/auth.reducers';
 
 import { DashboardComponent } from './dashboard.component';
 
