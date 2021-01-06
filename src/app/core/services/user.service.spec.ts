@@ -1,6 +1,6 @@
 import { getTestBed, TestBed } from '@angular/core/testing';
 
-import { UserService } from './user.service';
+import { MOCK_USER, UserService } from './user.service';
 
 import { User } from '../model/user';
 import { exception } from 'console';
@@ -24,13 +24,6 @@ describe('UserService', () => {
   it('should be created', () => {
     const service: UserService = TestBed.get(UserService);
     expect(service).toBeTruthy();
-  });
-
-  it('should get the active user correctly', () => {
-    const user:User = {email:'abc@gmail.com',password:'1234567'}
-    expect(service.authenticate('abc@gmail.com', '1234567'))
-  //  spyOn(service, 'isAuthenticated').and.returnValue(of(true));
-    
   });
   
 });

@@ -1,11 +1,11 @@
-/* import { TestBed } from '@angular/core/testing';
+/*   import { TestBed } from '@angular/core/testing';
  import { Actions } from '@ngrx/effects';
  import { Observable, of } from 'rxjs';
  import 'rxjs/add/observable/empty' 
  import { Router } from '@angular/router';
  import { hot, cold } from 'jest-marbles';
  import { AuthEffects } from './auth.effect';
- import { UserService } from '../../services/user.service';
+ import { UserService } from '../../core/services/user.service';
  import { provideMockActions } from '@ngrx/effects/testing';
  import {
    LogIn,
@@ -14,7 +14,7 @@
    LogInSuccess,
    LogOut
  } from '../actions/auth.action';
- import { User } from '../../model/user';
+ import { User } from '../../core/model/user';
  import { Action } from '@ngrx/store';
 
  describe('AuthEffects', () => {
@@ -77,7 +77,7 @@
 
        expect(effects.LogIn).toBe(expected);
      });
-   });
+   }); 
 
    describe('LogInSuccess', () => {
      it('should dispatch a RouterNavigation action', () => {
@@ -90,30 +90,11 @@
      });
    });
 
- /*   describe('loginRedirect$', () => {
-     it('should dispatch a RouterNavigation action when auth.LoginRedirect is dispatched', () => {
-       const action = new LoginRedirect();
-
-       const actions = hot('-a---', { a: action });
-
-       effects.LoginRedirect.subscribe(() => {
-         expect(routerService.navigate).toHaveBeenCalledWith(['/']);
-       });
-     });
-
-     it('should dispatch a RouterNavigation action when auth.Logout is dispatched', () => {
-       const action = new LogOut();
-       actions$ = hot('-a---', { a: action });
-       effects.LoginRedirect.subscribe(() => {
-         expect(routerService.navigate).toHaveBeenCalledWith(['/']);
-       });
-     });
-   }); 
+  
  });
 
-
- */
-
-
-
+*/
  
+
+
+

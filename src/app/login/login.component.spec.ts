@@ -12,6 +12,7 @@ import { MOCK_USER, UserService } from '../core/services/user.service';
 import { User } from '../core/model/user';
 import * as fromFeature from '../store/reducers/auth.reducers';
 import * as UserActions from '../store/actions/auth.action';
+import { of } from 'rxjs';
 
 
 describe('LoginComponent', () => {
@@ -20,12 +21,12 @@ describe('LoginComponent', () => {
   let el: HTMLElement;
   let store: Store<fromFeature.State>
   let user: User = new User();
+  const userServiceSpy = jasmine.createSpyObj('UserService', ['authenticate']);
+  let userSpy;
 
   beforeEach(() => {
     user = MOCK_USER;
   });
-  
-let demoService: UserService;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [LoginComponent],
@@ -39,7 +40,8 @@ let demoService: UserService;
         ],
         providers: [
           { provide: Store, useClass: Store },
-          FormBuilder
+          FormBuilder,
+          {provide :UserService,useClass:userServiceSpy}
         ],
         schemas: [
           CUSTOM_ELEMENTS_SCHEMA
@@ -52,6 +54,8 @@ let demoService: UserService;
   beforeEach(() => {
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
+    userSpy = userServiceSpy.authenticate.and.returnValue(of(MOCK_USER));
+  
    // store = fixture.debugElement.injector.get(Store);
    store = TestBed.get(Store); 
     spyOn(store, 'dispatch').and.callThrough();
@@ -71,7 +75,7 @@ let demoService: UserService;
     expect(element.querySelector('#password')).toBeTruthy();
     expect(element.querySelector('button')).toBeTruthy();
   });
-
+ 
   it('Should set submitted to true', async(() => {
     component.onSubmit();
     expect(component.onSubmit).toBeTruthy();
@@ -151,27 +155,25 @@ let demoService: UserService;
     );
   });
 
- 
-/*   it('should dispatch the login action when onSubmit is invoked', () => {
-  //  const user = generateUser();
-  const action = new UserActions.LogIn({user})
- // const store = TestBed.get(Store);
-    const spy = spyOn(store, 'dispatch');
-    fixture.detectChanges();
-    component.onSubmit();
-  //  expect(store.dispatch).toHaveBeenCalledWith(action);
-    spy.and.returnValue(action)
-  }); */
-
   it('Login Success', () => {
     const action = new UserActions.LogIn({email:'abc@gmail.com',password:'1234567'});
     fixture.detectChanges();
     component.onSubmit();
-     store.dispatch(action); component.getState.subscribe(data => {
+     store.dispatch(action); 
+     component.getState.subscribe(data => {
       expect(data.errorMessage).toEqual(null);
     });
   });
 
-
+   it('loginService login() should called ', fakeAsync(() => {
+    component.loginForm.controls['useremail'].setValue('abc@gmail.com');
+    component.loginForm.controls['password'].setValue('1234567');
+    fixture.detectChanges();
+    const button = fixture.debugElement.nativeElement.querySelector('button');
+    button.click();
+    const action = new UserActions.LogIn({email:'abc@gmail.com',password:'1234567'});
+    fixture.detectChanges();
+    store.dispatch(action); 
+  })); 
 });
 

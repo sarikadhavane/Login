@@ -14,7 +14,6 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  loading = false;
   submitted = false;
   getState: Observable<any>;
   errorMessage: string | null;
@@ -40,8 +39,6 @@ export class LoginComponent implements OnInit {
       ]
     });
   }
-
-  // convenience getter for easy access to form fields
   get f() {
     return this.loginForm.controls;
   }

@@ -38,6 +38,7 @@ describe('DashboardComponent', () => {
   });
   it('should create an instance of ngoninit', () => {
     component.ngOnInit();
+
   });
 
   it('should bind input text value to Component property', () => {
@@ -60,4 +61,10 @@ describe('DashboardComponent', () => {
       expect(store.dispatch).toHaveBeenCalledWith(action);
     });
 
+    it('should dispatch the logout action when signOut is invoked', () => {
+      const action = new UserActions.AddComment('')
+      fixture.detectChanges();
+      component.addComment();
+      expect(store.dispatch).toHaveBeenCalledWith(action);
+    });
 });
