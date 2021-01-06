@@ -64,4 +64,12 @@
          switchMap(payload => {
              return this.authService.getStatus();
  }));
+
+ @Effect({ dispatch: false })
+ LoginRedirect = this.actions.pipe(
+   ofType(AuthActionTypes.LOGOUT),
+   tap(authed => {
+     this.router.navigate(['']);
+   })
+ );
 }

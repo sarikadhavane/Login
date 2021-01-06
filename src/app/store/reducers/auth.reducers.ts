@@ -25,15 +25,15 @@ export const initialState: State = {
   comment:null
 };
 
-export const selectUserState = (state: State) => state.user; 
+//export const selectUserState = (state: State) => state.user; 
 
 export interface AppState {
  readonly authState: State;
 }
 
-export const reducers = {
+ export const reducers = {
   auth: auth.reducer
-};
+}; 
 
 export const selectAuthState = createFeatureSelector<AppState>('auth');
 

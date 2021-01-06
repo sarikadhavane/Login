@@ -1,4 +1,4 @@
-import { getTestBed, TestBed } from '@angular/core/testing';
+import { async, getTestBed, TestBed } from '@angular/core/testing';
 
 import { MOCK_USER, UserService } from './user.service';
 
@@ -9,21 +9,22 @@ import { of } from 'rxjs';
 describe('UserService', () => {
   let service: UserService;
   let injector: TestBed;
+  let mockAuthService: any = {
+    isAuthenticated: () => true,
+    authenticate: () => {
+      return MOCK_USER
+    },
+  };
   const userServiceSpy = jasmine.createSpyObj<UserService>('UserService', ['authenticate']);
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers:[{
         provide: UserService,
-        useValue: userServiceSpy
+        useValue: mockAuthService
       }]
     });
     injector = getTestBed();
     service = injector.get(UserService);
   });
-
-  it('should be created', () => {
-    const service: UserService = TestBed.get(UserService);
-    expect(service).toBeTruthy();
-  });
-  
+ 
 });

@@ -7,7 +7,6 @@ export enum AuthActionTypes {
   LOGIN_FAILURE = '[Auth] Login Failure',
   LOGOUT = '[Auth] Logout',
   GET_STATUS = '[Auth] GetStatus',
-  LOGIN_REDIRECT = '[Auth] LoginRedirect',
   ADD_COMMENT ='[Auth] AddComment'
 }
 
@@ -30,10 +29,6 @@ export class LogOut implements Action {
   readonly type = AuthActionTypes.LOGOUT;
 }
 
-export class LoginRedirect implements Action {
-    readonly type = AuthActionTypes.LOGIN_REDIRECT;
-  }
-
 export class GetStatus implements Action {
     readonly type = AuthActionTypes.GET_STATUS;
     constructor(public payload: any) { }
@@ -50,5 +45,4 @@ export type All =
   | LogInFailure
   | LogOut
   | GetStatus
-  | LoginRedirect
   | AddComment
