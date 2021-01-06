@@ -1,21 +1,29 @@
 import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
-import { DebugElement, NO_ERRORS_SCHEMA } from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA, DebugElement, NO_ERRORS_SCHEMA } from "@angular/core";
 import { By } from "@angular/platform-browser";
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { exception } from 'console';
 import { State, Store, StoreModule } from '@ngrx/store';
 import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppState, reducers } from '../store/reducers/auth.reducers';
-import { UserService } from '../core/services/user.service';
+import { MOCK_USER, UserService } from '../core/services/user.service';
+import { User } from '../core/model/user';
+import * as fromFeature from '../store/reducers/auth.reducers';
+import * as UserActions from '../store/actions/auth.action';
 
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let el: HTMLElement;
-  let store: Store<AppState>;
+  let store: Store<fromFeature.State>
+  let user: User = new User();
+
+  beforeEach(() => {
+    user = MOCK_USER;
+  });
   
 let demoService: UserService;
   beforeEach(async(() => {
@@ -25,10 +33,18 @@ let demoService: UserService;
         FormsModule,
         ReactiveFormsModule,
         RouterTestingModule,
-        StoreModule.forRoot(reducers, {})
+        RouterTestingModule,
+        StoreModule.forRoot(fromFeature.reducers),
     //    StoreModule.provideStore({ selectAuthState }),
         ],
-        providers:[]
+        providers: [
+          { provide: Store, useClass: Store },
+          FormBuilder
+        ],
+        schemas: [
+          CUSTOM_ELEMENTS_SCHEMA
+        ]
+        
     })
       .compileComponents();
   }));
@@ -37,6 +53,8 @@ let demoService: UserService;
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
    // store = fixture.debugElement.injector.get(Store);
+   store = TestBed.get(Store); 
+    spyOn(store, 'dispatch').and.callThrough();
     fixture.detectChanges();
         component.ngOnInit();
   });
@@ -133,5 +151,27 @@ let demoService: UserService;
     );
   });
 
+ 
+/*   it('should dispatch the login action when onSubmit is invoked', () => {
+  //  const user = generateUser();
+  const action = new UserActions.LogIn({user})
+ // const store = TestBed.get(Store);
+    const spy = spyOn(store, 'dispatch');
+    fixture.detectChanges();
+    component.onSubmit();
+  //  expect(store.dispatch).toHaveBeenCalledWith(action);
+    spy.and.returnValue(action)
+  }); */
+
+  it('Login Success', () => {
+    const action = new UserActions.LogIn({email:'abc@gmail.com',password:'1234567'});
+    fixture.detectChanges();
+    component.onSubmit();
+     store.dispatch(action); component.getState.subscribe(data => {
+      expect(data.errorMessage).toEqual(null);
+    });
+  });
+
 
 });
+

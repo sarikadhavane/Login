@@ -52,18 +52,11 @@ export class LoginComponent implements OnInit {
       const payload = {
         email: this.f.useremail.value,
         password: this.f.password.value
-      };
-      console.log(this.errorMessage,'mee')
-      
+      };      
       this.store.dispatch(new LogIn(payload)); 
       this.getState.subscribe((state) => {
         this.errorMessage = state.errorMessage;
         this.loginForm.markAsPristine();
-        console.log(this.errorMessage)
-        console.log(state)
-        if(state.isAuthenticated){
-       //   this.router.navigateByUrl('/dashboard');
-        }
       });     
     }
     }
