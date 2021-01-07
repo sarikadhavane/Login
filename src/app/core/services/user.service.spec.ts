@@ -19,12 +19,28 @@ describe('UserService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers:[{
-        provide: UserService,
-        useValue: mockAuthService
+        UserService
       }]
     });
-    injector = getTestBed();
-    service = injector.get(UserService);
   });
- 
+
+  beforeEach(() => { service = new UserService(); });
+  it('#authenticate should return value from observable',
+  (done) => {
+  service.authenticate('abc@gmail.com','1234567').subscribe(value => {
+   expect(value).toBe(MOCK_USER);
+   expect(service._authenticated).toEqual(true)
+    done();
+  });
+});
+
+
+it('#isAuthenticated  false should return value from observable',
+(done) => {
+  service._authenticated=true
+service.isAuthenticated().subscribe(value => {
+ expect(value).toBe(true); 
+  done();
+});
+});
 });
